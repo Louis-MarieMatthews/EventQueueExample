@@ -59,8 +59,25 @@ public class EventQueueExample
   
   
   
-  public void addTask (SoundPlayingEvent task)
+  public void addTask (SoundPlayingEvent eventToBeAdded)
   {
-    soundQueue_.add(task);
+    SoundPlayingEvent doubleInQueue = null;
+    
+    Iterator<SoundPlayingEvent> i = soundQueue_.iterator();
+    boolean doubleNotFoundYet = true;
+    while (i.hasNext() && doubleNotFoundYet) {
+      SoundPlayingEvent currentEvent = i.next();
+      if (eventToBeAdded.getSoundFile().equals (currentEvent.getSoundFile())) {
+        doubleInQueue = currentEvent;
+        doubleNotFoundYet = false;
+      }
+    }
+    
+    if (doubleInQueue != null) {
+      doubleInQueue.setVolume (doubleInQueue.getVolume() + 10);
+    }
+    else {
+      soundQueue_.add(eventToBeAdded);
+    }
   }
 }
