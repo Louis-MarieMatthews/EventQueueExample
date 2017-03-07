@@ -15,14 +15,12 @@ import minusone.gui.EventQueueExampleUi;
  */
 public class EventQueueExample
 {
-  private long fpsRate_;
   private PriorityQueue<Task> taskQueue;
   
   
   
   public EventQueueExample()
   {
-    fpsRate_ = 60;
     taskQueue = new PriorityQueue<Task>();
   }
   
@@ -36,7 +34,7 @@ public class EventQueueExample
 
     while (true) {
       // TODO: replace with TimeUnit.SECONDS.sleep or ScheduledExecutorService?
-      Thread.sleep (1000 / eqe.getFpsRate());
+      Thread.sleep (1000);
       System.out.println ("New frame!");
       try {
         eqe.update();
@@ -62,23 +60,5 @@ public class EventQueueExample
   public void addTask (Task task)
   {
     taskQueue.add(task);
-  }
-  
-  
-  
-  
-  public long getFpsRate()
-  {
-    return fpsRate_;
-  }
-  
-  
-  
-  public void setFpsRate (long fpsRate)
-  {
-    if (fpsRate <= 0) {
-      throw new IllegalArgumentException();
-    }
-    fpsRate_ = fpsRate;
   }
 }
