@@ -34,7 +34,7 @@ public class EventQueueExample
 
     while (true) {
       // TODO: replace with TimeUnit.SECONDS.sleep or ScheduledExecutorService?
-      Thread.sleep (1000);
+      Thread.sleep (1000); // prevents the application from using too much CPU
       System.out.println ("New frame!");
       try {
         eqe.update();
