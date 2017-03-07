@@ -16,14 +16,14 @@ import minusone.gui.EventQueueExampleUi;
 public class EventQueueExample
 {
   private long fpsRate_;
-  private PriorityQueue<EventQueueTask> taskQueue;
+  private PriorityQueue<Task> taskQueue;
   
   
   
   public EventQueueExample()
   {
     fpsRate_ = 60;
-    taskQueue = new PriorityQueue<EventQueueTask>();
+    taskQueue = new PriorityQueue<Task>();
   }
   
   
@@ -59,7 +59,7 @@ public class EventQueueExample
   
   
   
-  public void addTask (EventQueueTask task)
+  public void addTask (Task task)
   {
     taskQueue.add(task);
   }

@@ -10,14 +10,14 @@ package minusone.logic;
  * @author Louis-Marie Matthews
  * TODO: interface?
  */
-public abstract class EventQueueTask
-  implements Comparable<EventQueueTask>
+public abstract class Task
+  implements Comparable<Task>
 {
   private int priority_;
   
   
   
-  public EventQueueTask(int priority)
+  public Task(int priority)
   {
     priority_ = priority;
   }
@@ -25,7 +25,7 @@ public abstract class EventQueueTask
   
   
   @Override
-  public int compareTo(EventQueueTask t)
+  public int compareTo(Task t)
   {
     int sgn;
     

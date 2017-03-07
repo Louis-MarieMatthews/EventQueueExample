@@ -3,7 +3,7 @@ package minusone.gui;
 
 import java.awt.event.ActionEvent;
 import minusone.logic.EventQueueExample;
-import minusone.logic.EventQueueTask;
+import minusone.logic.Task;
 
 /**
  *
@@ -28,6 +28,10 @@ public class EventQueueExampleUi
 
       // Add event listeners
       jTextField1.addActionListener(this::fpsRateUpdated);
+      jButton1.addActionListener(this::stillAliveButtonClicked);
+      jButton2.addActionListener(this::humanRevolutionButtonClicked);
+      jButton3.addActionListener(this::mankindDividedButtonClicked);
+      
   }
 
 
@@ -37,7 +41,7 @@ public class EventQueueExampleUi
     try {
       parentEqe_.setFpsRate (Long.parseLong (jTextField1.getText()));
       System.out.println("FPS rate is " + parentEqe_.getFpsRate() );
-      parentEqe_.addTask(new EventQueueTask(10) {
+      parentEqe_.addTask(new Task(10) {
         @Override
         public void perform()
         {
@@ -51,6 +55,27 @@ public class EventQueueExampleUi
     catch (IllegalArgumentException exception) {
       System.err.println("Invalid FPS rate.");
     }
+  }
+  
+  
+  
+  private void stillAliveButtonClicked(ActionEvent actionEvent)
+  {
+    parentEqe_.addTask(new SoundPlayingTask(10, 100, "still-alive.mp3"));
+  }
+  
+  
+  
+  private void humanRevolutionButtonClicked(ActionEvent actionEvent)
+  {
+    parentEqe_.addTask(new SoundPlayingTask(10, 100, "human-revolution.mp3"));
+  }
+  
+  
+  
+  private void mankindDividedButtonClicked(ActionEvent actionEvent)
+  {
+    parentEqe_.addTask(new SoundPlayingTask(10, 100, "still-alive.mp3"));
   }
 
   /**
