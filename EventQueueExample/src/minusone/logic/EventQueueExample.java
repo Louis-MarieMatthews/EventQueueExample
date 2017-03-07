@@ -5,6 +5,8 @@
  */
 package minusone.logic;
 
+import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
 import minusone.gui.EventQueueExampleUi;
 
 /**
@@ -13,13 +15,15 @@ import minusone.gui.EventQueueExampleUi;
  */
 public class EventQueueExample
 {
-  public long fpsRate_;
+  private long fpsRate_;
+  private PriorityQueue<EventQueueTask> taskQueue;
   
   
   
   public EventQueueExample()
   {
     fpsRate_ = 60;
+    taskQueue = new PriorityQueue<EventQueueTask>();
   }
   
   
@@ -34,8 +38,32 @@ public class EventQueueExample
       // TODO: replace with TimeUnit.SECONDS.sleep or ScheduledExecutorService?
       Thread.sleep (1000 / eqe.getFpsRate());
       System.out.println ("New frame!");
+      try {
+        eqe.update();
+      }
+      catch (NullPointerException exception) {
+        continue;
+      }
+      catch (NoSuchElementException exception) {
+        continue;
+      }
     }
   }
+  
+  
+  
+  private void update()
+  {
+    taskQueue.remove().perform();
+  }
+  
+  
+  
+  public void addTask (EventQueueTask task)
+  {
+    taskQueue.add(task);
+  }
+  
   
   
   
@@ -43,6 +71,8 @@ public class EventQueueExample
   {
     return fpsRate_;
   }
+  
+  
   
   public void setFpsRate (long fpsRate)
   {

@@ -3,6 +3,7 @@ package minusone.gui;
 
 import java.awt.event.ActionEvent;
 import minusone.logic.EventQueueExample;
+import minusone.logic.EventQueueTask;
 
 /**
  *
@@ -36,6 +37,13 @@ public class EventQueueExampleUi
     try {
       parentEqe_.setFpsRate (Long.parseLong (jTextField1.getText()));
       System.out.println("FPS rate is " + parentEqe_.getFpsRate() );
+      parentEqe_.addTask(new EventQueueTask(10) {
+        @Override
+        public void perform()
+        {
+          System.out.println ("Perforned,.");
+        }
+      });
     }
     catch (NumberFormatException exception) { // TODO: replace with multicatch
       System.err.println("Invalid FPS rate.");
