@@ -11,9 +11,44 @@ import minusone.gui.EventQueueExampleUi;
  *
  * @author louis-mariematthews
  */
-public class EventQueueExample {
-    public static void main(String[] args)
-    {
-        EventQueueExampleUi.createWindow();
+public class EventQueueExample
+{
+  public long fpsRate_;
+  
+  
+  
+  public EventQueueExample()
+  {
+    fpsRate_ = 60;
+  }
+  
+  
+  
+  public static void main(String[] args)
+    throws InterruptedException
+  {
+    EventQueueExample eqe = new EventQueueExample();
+    EventQueueExampleUi.createWindow(eqe);
+
+    while (true) {
+      // TODO: replace with TimeUnit.SECONDS.sleep or ScheduledExecutorService?
+      Thread.sleep (1000 / eqe.getFpsRate());
+      System.out.println ("New frame!");
     }
+  }
+  
+  
+  
+  public long getFpsRate()
+  {
+    return fpsRate_;
+  }
+  
+  public void setFpsRate (long fpsRate)
+  {
+    if (fpsRate <= 0) {
+      throw new IllegalArgumentException();
+    }
+    fpsRate_ = fpsRate;
+  }
 }
