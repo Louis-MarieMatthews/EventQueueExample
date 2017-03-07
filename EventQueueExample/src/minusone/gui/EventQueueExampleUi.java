@@ -4,6 +4,7 @@ package minusone.gui;
 import java.awt.event.ActionEvent;
 import minusone.logic.EventQueueExample;
 import minusone.logic.Task;
+import minusone.logic.task.SoundPlayingTask;
 
 /**
  *
