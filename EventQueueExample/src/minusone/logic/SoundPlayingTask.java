@@ -3,34 +3,67 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package minusone.logic.task;
-
-import minusone.logic.Task;
+package minusone.logic;
 
 /**
  *
  * @author Louis-Marie Matthews
  */
-public class SoundPlayingTask extends Task
+public class SoundPlayingTask
+  implements Comparable<SoundPlayingTask>
 {
+  private int priority_;
   private String soundFile_;
   private int volume_;
+  
+  
+  @Override
+  public int compareTo(SoundPlayingTask t)
+  {
+    int sgn;
+    
+    if (priority_ > t.getPriority()) {
+      sgn = 1;
+    }
+    else if (priority_ < t.getPriority()) {
+      sgn = -1;
+    }
+    else {
+      sgn = 0;
+    }
+    
+    return sgn;
+  }
+  
+  
+  
+  public int getPriority()
+  {
+    return priority_;
+  }
+  
+  
+  
+  public void setPriority (int priority)
+  {
+    priority_ = priority;
+  }
   
   
   
   public SoundPlayingTask (int priority, int volume, String soundFile)
   {
-    super(priority);
+    priority_ = priority;
     volume_ = volume;
     soundFile_ = soundFile;
   }
   
   
   
-  @Override
   public void perform()
   {
-    System.out.println (soundFile_ + "is being played at a volume of " + volume_ + "dB.");
+    System.out.println (soundFile_ + "is being played at a volume of " + volume_
+                        + "dB.");
   }
   
   

@@ -5,9 +5,11 @@
  */
 package minusone.logic;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import minusone.gui.EventQueueExampleUi;
+import minusone.logic.SoundPlayingTask;
 
 /**
  *
@@ -15,13 +17,13 @@ import minusone.gui.EventQueueExampleUi;
  */
 public class EventQueueExample
 {
-  private PriorityQueue<Task> taskQueue;
+  private PriorityQueue<SoundPlayingTask> soundQueue_;
   
   
   
   public EventQueueExample()
   {
-    taskQueue = new PriorityQueue<Task>();
+    soundQueue_ = new PriorityQueue<SoundPlayingTask>();
   }
   
   
@@ -52,13 +54,13 @@ public class EventQueueExample
   
   private void update()
   {
-    taskQueue.remove().perform();
+    soundQueue_.remove().perform();
   }
   
   
   
-  public void addTask (Task task)
+  public void addTask (SoundPlayingTask task)
   {
-    taskQueue.add(task);
+    soundQueue_.add(task);
   }
 }
