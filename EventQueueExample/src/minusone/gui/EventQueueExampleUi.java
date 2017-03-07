@@ -3,7 +3,7 @@ package minusone.gui;
 
 import java.awt.event.ActionEvent;
 import minusone.logic.EventQueueExample;
-import minusone.logic.SoundPlayingTask;
+import minusone.logic.SoundPlayingEvent;
 
 /**
  *
@@ -37,21 +37,21 @@ public class EventQueueExampleUi
   
   private void stillAliveButtonClicked(ActionEvent actionEvent)
   {
-    parentEqe_.addTask(new SoundPlayingTask(10, 100, "still-alive.mp3"));
+    parentEqe_.addTask(new SoundPlayingEvent(10, 100, "still-alive.mp3"));
   }
   
   
   
   private void humanRevolutionButtonClicked(ActionEvent actionEvent)
   {
-    parentEqe_.addTask(new SoundPlayingTask(10, 100, "human-revolution.mp3"));
+    parentEqe_.addTask(new SoundPlayingEvent(10, 100, "human-revolution.mp3"));
   }
   
   
   
   private void mankindDividedButtonClicked(ActionEvent actionEvent)
   {
-    parentEqe_.addTask(new SoundPlayingTask(10, 100, "still-alive.mp3"));
+    parentEqe_.addTask(new SoundPlayingEvent(10, 100, "still-alive.mp3"));
   }
 
   /**

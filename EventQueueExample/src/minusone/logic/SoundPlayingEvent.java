@@ -9,8 +9,8 @@ package minusone.logic;
  *
  * @author Louis-Marie Matthews
  */
-public class SoundPlayingTask
-  implements Comparable<SoundPlayingTask>
+public class SoundPlayingEvent
+  implements Comparable<SoundPlayingEvent>
 {
   private int priority_;
   private String soundFile_;
@@ -18,7 +18,7 @@ public class SoundPlayingTask
   
   
   @Override
-  public int compareTo(SoundPlayingTask t)
+  public int compareTo(SoundPlayingEvent t)
   {
     int sgn;
     
@@ -51,7 +51,7 @@ public class SoundPlayingTask
   
   
   
-  public SoundPlayingTask (int priority, int volume, String soundFile)
+  public SoundPlayingEvent (int priority, int volume, String soundFile)
   {
     priority_ = priority;
     volume_ = volume;
