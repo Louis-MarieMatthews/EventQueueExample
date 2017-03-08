@@ -25,8 +25,8 @@ import minusone.gui.EventQueueExampleUi;
 import minusone.logic.SoundPlayingEvent;
 
 /**
- *
- * @author louis-mariematthews
+ * 
+ * @author Louis-Marie Matthews
  */
 public class EventQueueExample
 {
@@ -41,6 +41,17 @@ public class EventQueueExample
   
   
   
+  /**
+   * This class is the main method of the program. It displays the GUI allowing
+   * the user to choose a sound to play. For the purposes of demonstrating how
+   * an event queue work, and also to prevent sucking up too much CPU power,
+   * there is an "artificial" delay between the time the user clicks the "Play
+   * sound 1" (or 2 or 3) and the time the sound is played (or rather, displayed
+   * to the console).
+   * 
+   * @param args useless default main parameters
+   * @throws InterruptedException 
+   */
   public static void main(String[] args)
     throws InterruptedException
   {
@@ -50,7 +61,6 @@ public class EventQueueExample
     while (true) {
       // TODO: replace with TimeUnit.SECONDS.sleep or ScheduledExecutorService?
       Thread.sleep (1000); // prevents the application from using too much CPU
-      System.out.println ("New frame!");
       try {
         eqe.update();
       }
@@ -65,6 +75,11 @@ public class EventQueueExample
   
   
   
+  /**
+   * When called, this method processes the next event in the priority queue.
+   * This event is the one with the highest priority in the queue, because
+   * events are sorted according to their priority when added.
+   */
   private void update()
   {
     soundQueue_.remove().perform();
@@ -72,6 +87,13 @@ public class EventQueueExample
   
   
   
+  /**
+   * This method adds an event to the queue. If another event with the same
+   * filename is already in the event, it doesn't add the event to the queue but
+   * increase the decibel level of the already present event.
+   * 
+   * @param eventToBeAdded the event to be added to the queue
+   */
   public void addTask (SoundPlayingEvent eventToBeAdded)
   {
     SoundPlayingEvent doubleInQueue = null;
