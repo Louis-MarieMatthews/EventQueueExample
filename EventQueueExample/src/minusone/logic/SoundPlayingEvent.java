@@ -95,9 +95,17 @@ public class SoundPlayingEvent
    * actually plays the song according to its dB level and file name.
    */
   public void perform()
+    throws InterruptedException
   {
     System.out.println (soundFile_ + "is being played at a volume of " + volume_
-                        + "dB.");
+                        + "dB...");
+    System.out.println();
+    for (int i = 0; i < 10; i++) {
+        Thread.sleep (500);
+        System.out.print(" * ");
+    }
+    System.out.println();
+    System.out.println (soundFile_ + " has been played!");
   }
   
   
