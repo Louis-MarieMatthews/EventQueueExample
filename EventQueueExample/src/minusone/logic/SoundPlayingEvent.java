@@ -49,10 +49,10 @@ public class SoundPlayingEvent
   {
     int sgn;
     
-    if (priority_ > t.getPriority()) {
+    if (priority_ < t.getPriority()) {
       sgn = 1;
     }
-    else if (priority_ < t.getPriority()) {
+    else if (priority_ > t.getPriority()) {
       sgn = -1;
     }
     else {

@@ -61,14 +61,14 @@ public class EventQueueExampleUi
   
   private void humanRevolutionButtonClicked(ActionEvent actionEvent)
   {
-    parentEqe_.addTask(new SoundPlayingEvent(10, 100, "human-revolution.mp3"));
+    parentEqe_.addTask(new SoundPlayingEvent(5, 100, "human-revolution.mp3"));
   }
   
   
   
   private void mankindDividedButtonClicked(ActionEvent actionEvent)
   {
-    parentEqe_.addTask(new SoundPlayingEvent(10, 100, "still-alive.mp3"));
+    parentEqe_.addTask(new SoundPlayingEvent(3, 100, "still-alive.mp3"));
   }
 
   /**
@@ -88,11 +88,16 @@ public class EventQueueExampleUi
         setTitle("Event Queue Example");
         setResizable(false);
 
-        jButton1.setText("Play sound 1");
+        jButton1.setText("Play sound 1 (priority 10)");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Play sound 2");
+        jButton2.setText(" P;lay sound 2 (priority 5)");
 
-        jButton3.setText("Play sound 3");
+        jButton3.setText(" Play sound 3 (priority 3)");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -108,9 +113,9 @@ public class EventQueueExampleUi
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,6 +134,10 @@ public class EventQueueExampleUi
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
   public static void createWindow(EventQueueExample parentEqe) {
       /* Set the Nimbus look and feel */
