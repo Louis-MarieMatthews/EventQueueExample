@@ -43,6 +43,9 @@ public class SoundPlayingEvent
    * with. Thus if event A has been added after event B and if event A has a
    * higher priority than event B and event B has not been processed yet, event
    * A will be processed first.
+   * @param t the SoundPlayingEvent object to compare the instance to
+   * @return -1, 0 or 1 if the current instance is less tha, equal to or greater
+   * than the parameter.
    */
   @Override
   public int compareTo(SoundPlayingEvent t)
@@ -97,7 +100,7 @@ public class SoundPlayingEvent
   public void perform()
     throws InterruptedException
   {
-    System.out.println (soundFile_ + "is being played at a volume of " + volume_
+    System.out.println (soundFile_ + " is being played at a volume of " + volume_
                         + "dB...");
     System.out.println();
     for (int i = 0; i < 10; i++) {
