@@ -23,7 +23,8 @@ import minusone.logic.SoundProcessingRunnable;
 import minusone.logic.SoundRequestEventQueue;
 
 /**
- *
+ * Contains the main method, which runs the entire program.
+ * 
  * @author Louis-Marie Matthews
  */
 public class Main

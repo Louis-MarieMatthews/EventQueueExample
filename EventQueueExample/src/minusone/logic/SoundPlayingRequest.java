@@ -19,17 +19,16 @@
 package minusone.logic;
 
 /**
- * This class represents the event of playing a sound. Instances are created by
- * any parts of the program (apart from the this class, preferably) and added to
- * an event queue (such as the one in the main method in EventQueueExample.
- * Their priority affects the order they are processed, the order in which they
- * have been added should have no impact on the order they are processed if no
- * events has been processed in the meantime.
+ * Represents a request for playing a sound. Instances are created by
+ * any parts of the program and added to an event queue.
+ * Their priority affects the order in which they are processed, the order in
+ * which they have been added should have no impact on the order they will be
+ * processed for any request not processed yet.
  * 
  * @author Louis-Marie Matthews
  */
-public class SoundPlayingEvent
-  implements Comparable<SoundPlayingEvent>
+public class SoundPlayingRequest
+  implements Comparable<SoundPlayingRequest>
 {
   private int priority_;
   private String soundFile_;
@@ -48,7 +47,7 @@ public class SoundPlayingEvent
    * than the parameter.
    */
   @Override
-  public int compareTo(SoundPlayingEvent t)
+  public int compareTo(SoundPlayingRequest t)
   {
     int sgn;
     
@@ -81,7 +80,7 @@ public class SoundPlayingEvent
   
   
   
-  public SoundPlayingEvent (int priority, int volume, String soundFile)
+  public SoundPlayingRequest (int priority, int volume, String soundFile)
   {
     priority_ = priority;
     volume_ = volume;
@@ -91,11 +90,12 @@ public class SoundPlayingEvent
   
   
   /**
-   * This method performs the event. For the purpose of understanding, the
+   * This method processes the request. For the purpose of understanding, the
    * method is only printing a line to the console as the goal of the program is
    * only to understand how an event queue works and how it can be used. You can
    * imagine, or even implement it yourself if you want, that the method
    * actually plays the song according to its dB level and file name.
+   * @throws java.lang.InterruptedException
    */
   public void perform()
     throws InterruptedException

@@ -19,22 +19,24 @@
 package minusone.logic;
 
 /**
- *
+ * Instances of this class are used to lock the sound request event queue and
+ * add their sound request to it.
+ * 
  * @author Louis-Marie Matthews
  */
 public class NewSoundEventNotifier
   implements Runnable
 {
-  private final SoundPlayingEvent soundPlayingEvent_;
-  private final SoundRequestEventQueue soundQueue_;
+  private final SoundPlayingRequest soundPlayingRequest_;
+  private final SoundRequestEventQueue soundRequestQueue_;
   
   
   
-  public NewSoundEventNotifier (SoundPlayingEvent soundPlayingEvent,
-                       SoundRequestEventQueue soundQueue)
+  public NewSoundEventNotifier (SoundPlayingRequest soundPlayingRequest,
+                       SoundRequestEventQueue soundRequestQueue)
   {
-      soundPlayingEvent_ = soundPlayingEvent;
-      soundQueue_ = soundQueue;
+      soundPlayingRequest_ = soundPlayingRequest;
+      soundRequestQueue_ = soundRequestQueue;
   }
 
 
@@ -42,9 +44,9 @@ public class NewSoundEventNotifier
   @Override
   public void run()
   {
-    soundQueue_.add(soundPlayingEvent_);
-    synchronized (soundQueue_) {
-      soundQueue_.notify();
+    soundRequestQueue_.add(soundPlayingRequest_);
+    synchronized (soundRequestQueue_) {
+      soundRequestQueue_.notify();
     }
   }
 }

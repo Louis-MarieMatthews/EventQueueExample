@@ -31,7 +31,7 @@ import java.util.PriorityQueue;
  */
 public class SoundRequestEventQueue
 {
-  private PriorityQueue<SoundPlayingEvent> queue_;
+  private PriorityQueue<SoundPlayingRequest> queue_;
   
   
   
@@ -50,9 +50,9 @@ public class SoundRequestEventQueue
   
   
   /**
-   * When called, this method processes the next event in the priority queue.
-   * This event is the one with the highest priority in the queue, because
-   * events are sorted according to their priority when added.
+   * When called, this method processes the next request in the event queue.
+   * This request is the one with the highest priority in the queue, because
+   * requests are sorted according to their priority when added.
    * 
    * @throws java.lang.InterruptedException
    */
@@ -65,46 +65,47 @@ public class SoundRequestEventQueue
   
   
   /**
-   * This method adds an event to the queue. If another event with the same
-   * filename is already in the event, it doesn't add the event to the queue but
-   * increase the decibel level of the already present event.
+   * This method adds an request to the queue. If another request with the same
+   * filename is already in the event, it doesn't add the request to the queue
+   * but increase the decibel level of the already present request.
    * 
    * @param eventToBeAdded the event to be added to the queue
    */
-  public synchronized void add (SoundPlayingEvent eventToBeAdded)
+  public synchronized void add (SoundPlayingRequest requestToBeAdded)
   {
-    SoundPlayingEvent duplicateInQueue = getDuplicateInQueue (eventToBeAdded);
+    SoundPlayingRequest duplicateInQueue = getDuplicateInQueue (requestToBeAdded);
     
     if (duplicateInQueue != null) {
       // Slightly increases the volume of the already existing sound request but
       // does not add duplicate.
       int newVolume = (int) (duplicateInQueue.getVolume() +
-                             eventToBeAdded.getVolume() / 10);
+                             requestToBeAdded.getVolume() / 10);
       duplicateInQueue.setVolume (newVolume);
     }
     else {
-      queue_.add(eventToBeAdded);
+      queue_.add(requestToBeAdded);
     }
   }
   
   
   
-  public SoundPlayingEvent peek()
+  public SoundPlayingRequest peek()
   {
     return queue_.peek();
   }
   
   
   
-  private SoundPlayingEvent getDuplicateInQueue(SoundPlayingEvent soundRequest)
+  private SoundPlayingRequest getDuplicateInQueue(SoundPlayingRequest
+                                                  soundRequest)
   {
-    SoundPlayingEvent duplicateInQueue = null;
+    SoundPlayingRequest duplicateInQueue = null;
     
-    Iterator<SoundPlayingEvent> i = queue_.iterator();
+    Iterator<SoundPlayingRequest> i = queue_.iterator();
     boolean duplicateNotFoundYet = true;
     
     while (i.hasNext() && duplicateNotFoundYet) {
-      SoundPlayingEvent currentEvent = i.next();
+      SoundPlayingRequest currentEvent = i.next();
       if (soundRequest.getSoundFile().equals (currentEvent.getSoundFile())) {
         duplicateInQueue = currentEvent;
         duplicateNotFoundYet = false;
