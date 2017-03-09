@@ -54,21 +54,21 @@ public class EventQueueExampleUi
   
   private void stillAliveButtonClicked(ActionEvent actionEvent)
   {
-    parentEqe_.addTask(new SoundPlayingEvent(10, 100, "still-alive.mp3"));
+    parentEqe_.addTask(new SoundPlayingEvent(10, 100, "sound1.mp3"));
   }
   
   
   
   private void humanRevolutionButtonClicked(ActionEvent actionEvent)
   {
-    parentEqe_.addTask(new SoundPlayingEvent(5, 100, "human-revolution.mp3"));
+    parentEqe_.addTask(new SoundPlayingEvent(5, 100, "sound2.mp3"));
   }
   
   
   
   private void mankindDividedButtonClicked(ActionEvent actionEvent)
   {
-    parentEqe_.addTask(new SoundPlayingEvent(3, 100, "still-alive.mp3"));
+    parentEqe_.addTask(new SoundPlayingEvent(3, 100, "sound3.mp3"));
   }
 
   /**
